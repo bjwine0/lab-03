@@ -11,17 +11,6 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/layout.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/modules.css" />
 
-    <script id="neighborhood-template" type="text/x-handlebars-template">
-      <section>
-        <h2>{{title}}</h2>
-        <img class="" src="{{image_url}}">
-        <p>Part of: {{city}}</p>
-        <p>Current population: {{population}}</p>
-        <p>Founded on: {{founded}}</p>
-        {{{body}}}
-      </section>
-    </script>
-
   </head>
   <body>
     <header>
@@ -29,6 +18,12 @@
       <select>
         <option value="default">Filter by Keyword</option>
       </select>
+
+      <ul>
+        <li class="navbar"><a href="index.html">Home</a></li>
+        <li class="navbar"><a href="index2.html">Page 2</a></li>
+      </ul>
+
     </header>
     <main>
       <section id="photo-template">

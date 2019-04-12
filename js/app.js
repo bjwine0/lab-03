@@ -1,53 +1,77 @@
 'use strict';
-debugger;
+// debugger;
+
+let animals = [];
+
 
 
 function Animal(animal) {
-  this.image_url = animal.image_url;
-  this.title = animal.title;
-  this.description = animal.description;
-  this.keyword = animal.keyword;
-  this.horns = animal.horns;
-  // keyword.push(this.keyword);
-  console.log('key', this.keyword);
-  if (!(Animal.noDuplicate.indexOf(animal.keyword) + 1)) {
-    Animal.noDuplicate.push(animal.keyword);
+  for (let key in animal) {
+    console.log('key', key);
+    this[key] = animal[key];
   }
-
 }
 
-Animal.noDuplicate = [];
-console.log('nodup', Animal.noDuplicate);
-Animal.allAnimals = [];
-console.log('animal.allaniml', Animal.allAnimals);
 
-Animal.prototype.render = function () {
-  $('main').append('<div class="dupe"></div>');
-  let animalDupe = $('div[class="dupe"]');
+//   if (!(Animal.noDuplicate.indexOf(animal.keyword) + 1)) {
+//     Animal.noDuplicate.push(animal.keyword);
+//   }
 
-  let animalHtml = $('#photo-template').html();
+// }
 
-  animalDupe.html(animalHtml);
 
-  animalDupe.find('h2').text(this.title);
-  animalDupe.find('img').attr('src', this.image_url);
-  animalDupe.find('#description').text(this.description);
-  animalDupe.find('#keyword').text(this.keyword);
-  animalDupe.find('#horns').text(this.horns);
-  animalDupe.removeClass('dupe');
-  animalDupe.attr('class', this.keyword);
-};
+// Animal.noDuplicate = [];
+// console.log('nodup', Animal.noDuplicate);
+// Animal.allAnimals = [];
+// console.log('animal.allaniml', Animal.allAnimals);
 
-Animal.readJson = () => {
-  $.get('data/page-1.json', 'json')
-    .then(data => {
-      data.forEach(item => {
-        Animal.allAnimals.push(new Animal(item));
-      });
-    })
-    .then(Animal.loadAnimals)
-    .then(Animal.loadKeyword);
-};
+Animal.prototype.toHtml = function () {
+  let $template = $('#animal-template').html();
+  console.log('src', $template);
+  let compiledTemplate = Handlebars.compile($template);
+  console.log(compiledTemplate(this));
+  return compiledTemplate(this);
+}
+
+
+//   $('main').append('<div class="dupe"></div>');
+//   let animalDupe = $('div[class="dupe"]');
+
+//   let animalHtml = $('#photo-template').html();
+
+//   animalDupe.html(animalHtml);
+
+//   animalDupe.find('h2').text(this.title);
+//   animalDupe.find('img').attr('src', this.image_url);
+//   animalDupe.find('#description').text(this.description);
+//   animalDupe.find('#keyword').text(this.keyword);
+//   animalDupe.find('#horns').text(this.horns);
+//   animalDupe.removeClass('dupe');
+//   animalDupe.attr('class', this.keyword);
+// };
+
+// Animal.readJson = () => {
+//   $.get('data/page-1.json', 'json')
+//     .then(data => {
+//       data.forEach(item => {
+//         Animal.allAnimals.push(new Animal(item));
+//       });
+//     })
+//     .then(Animal.loadAnimals)
+//     .then(Animal.loadKeyword);
+// };
+
+
+$.get('data/page-1.json', 'json').forEach(animalObject => {
+  animals.push(new Animal(animalObject));
+});
+
+animals.forEach(newAnimalObject => {
+  $('#animals').append(ourNewNeighborhoodObject.toHtml());
+ 
+});
+
+
 
 Animal.loadAnimals = () => {
   console.log('load animals');
@@ -57,7 +81,7 @@ Animal.loadAnimals = () => {
 $(() => Animal.readJson());
 
 Animal.loadKeyword = () => {
-  debugger;
+  // debugger;
   Animal.noDuplicate.forEach((keyword) => {
     $('select').append(`<option value="${keyword}">${keyword}</option>`);
   });
