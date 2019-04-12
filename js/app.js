@@ -1,6 +1,5 @@
 'use strict';
-debugger;
-
+// debugger;
 
 function Animal(animal) {
   this.image_url = animal.image_url;
@@ -57,7 +56,7 @@ Animal.loadAnimals = () => {
 $(() => Animal.readJson());
 
 Animal.loadKeyword = () => {
-  debugger;
+  // debugger;
   Animal.noDuplicate.forEach((keyword) => {
     $('select').append(`<option value="${keyword}">${keyword}</option>`);
   });
