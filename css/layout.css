@@ -1,0 +1,71 @@
+html {
+  margin: 0 auto;
+  text-align: center;
+}
+
+div {
+  border: solid 2px black;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px 0px;
+  width: 410px;
+  height: 530px;
+  margin-bottom: 30px;
+}
+
+body {
+  background-color: pink;
+}
+
+img {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  border: solid 1px grey;
+  background-color: white;
+  
+}
+
+#description {
+  font-family: 'Dokdo', cursive;
+  font-size: 25px;
+}
+
+#keyword {
+  font-family: 'Anton', sans-serif;
+  font-size: 20px;
+}
+
+h2 {
+  padding: 20px 0px;
+  font-family: 'Anton', sans-serif;
+  font-size: 20px;
+}
+
+select {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 15px;
+  padding: 20px 0px;
+}
+
+h1 {
+  margin: 0 auto;
+  font-size: 40px;
+  padding: 20px 0px;
+}
+
+@media only screen and (min-width: 768px) {
+  div {
+    float: left;
+  }
+
+  main {
+    width: 1230px;
+    margin: 0 auto;
+  }
+
+  footer {
+    clear: both;
+  }
+}
