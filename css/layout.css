@@ -3,12 +3,13 @@ html {
   text-align: center;
 }
 
-div {
+#photo-template {
   border: solid 2px black;
+  background-color: lightgray;
   margin: 0 auto;
   text-align: center;
-  padding: 20px 0px;
-  width: 410px;
+  padding: 20px 20px;
+  width: 400px;
   height: 530px;
   margin-bottom: 30px;
 }
@@ -57,12 +58,16 @@ h1 {
 }
 
 @media only screen and (min-width: 768px) {
-  div {
+  #photo-template {
     float: left;
   }
 
+#photo-template:nth-child(3n +2) {
+  margin: 0 30px;
+}
+
   main {
-    width: 1230px;
+    width: 1260px;
     margin: 0 auto;
   }
 
@@ -70,14 +75,15 @@ h1 {
     clear: both;
   }
 }
-li {
+
+/* li {
   display: inline-block;
   display: inline-block;
   margin-bottom: 20px;
   font-size: 20px;
   padding: 20px;
-}
-
+} */
+/* 
 a {
   text-decoration: none;
-}
+} */
