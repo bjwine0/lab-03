@@ -16,6 +16,7 @@ Animal.prototype.toHtml = function () {
 };
 
 Animal.readJson = ($value) => {
+  
   debugger;
   console.log($value);
   $.get(`data/${$value}.json`, 'json')
@@ -24,7 +25,6 @@ Animal.readJson = ($value) => {
         Animal.allAnimals.push(new Animal(item));
       });
     })
-    
     .then(populateKeywords)
     .then(sortKeywords)
     .then(Animal.loadAnimals)
@@ -54,7 +54,8 @@ Animal.loadAnimals = () => {
 
 Animal.loadKeyword = () => {
   Animal.keywords.forEach((keyword) => {
-    $('#filter').append(`<option value="${keyword}">${keyword}</option>`);
+    debugger;
+    $('#filter').append(`<option class="filter-remove" value="${keyword}">${keyword}</option>`);
   })
 };
 
@@ -66,8 +67,12 @@ $('#filter').on('change', function () {
 
 $('#click').on('change', function() {
   debugger;
-  $('div').hide();
+  $('.filter-remove').remove();
+  debugger;
+  $('div').remove();
   let $value = $(this).val();
+  Animal.allAnimals = [];
+  Animal.keywords = [];
   debugger;
   Animal.readJson($value);
 });
