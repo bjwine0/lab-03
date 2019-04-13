@@ -15,18 +15,22 @@ Animal.prototype.toHtml = function () {
   return compiledTemplate(this);
 };
 
-Animal.readJson = () => {
-  $.get('data/page-1.json', 'json')
+Animal.readJson = ($value) => {
+  debugger;
+  console.log($value);
+  $.get(`data/${$value}.json`, 'json')
     .then(data => {
       data.forEach(item => {
         Animal.allAnimals.push(new Animal(item));
       });
     })
+    
     .then(populateKeywords)
     .then(sortKeywords)
     .then(Animal.loadAnimals)
     .then(Animal.loadKeyword);
 };
+
 
 function populateKeywords() {
   Animal.allAnimals.forEach(animal => {
@@ -46,7 +50,7 @@ Animal.loadAnimals = () => {
   });
 };
 
-$(() => Animal.readJson());
+// $(() => Animal.readJson());
 
 Animal.loadKeyword = () => {
   Animal.keywords.forEach((keyword) => {
@@ -54,10 +58,18 @@ Animal.loadKeyword = () => {
   })
 };
 
-Animal.filterKeyword = () => {
+// Animal.filterKeyword = () => {
+//   debugger;
   $('#filter').on('change', function () {
     let $selection = $(this).val();
-    $('section').hide();
-    $(`section[class="${$selection}"]`).show();
+    $('div').hide();
+    $(`div[class="${$selection}"]`).show();
   });
-}
+
+$('#click').on('change', function() {
+  debugger;
+  $('div').hide();
+  let $value = $(this).val();
+  debugger;
+  Animal.readJson($value);
+});

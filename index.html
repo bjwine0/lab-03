@@ -10,13 +10,13 @@
   <link rel="stylesheet" type="text/css" media="screen" href="css/modules.css" />
 
   <script id="animal-template" type="text/x-handlebars-template">
-      <section id="photo-template">
+      <div id="photo-template" class="{{keyword}}">
         <h2>{{title}}</h2>
         <img class="" src="{{image_url}}" alt="{{title}}">
         <p id="description">{{description}}</p>
         <p id="keyword">{{keyword}}</p>
         <p id="horns">{{horns}}</p>
-      </section>
+      </div>
     </script>
 
 </head>
@@ -24,9 +24,10 @@
 <body>
   <header>
     <h1>The Gallery of Horns</h1>
-    <select>
-      <option value="page-1">Page-1</option>
-      <option value="page-2">Page-2</option>
+    <select id="click">
+      <option value="default">Select Page</option>
+      <option class="" value="page-1">Page-1</option>
+      <option class="" value="page-2">Page-2</option>
     </select>
     <select id="filter">
       <option value="default">Filter by Keyword</option>
