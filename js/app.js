@@ -57,7 +57,7 @@ Animal.loadKeyword = () => {
 Animal.filterKeyword = () => {
   $('#filter').on('change', function () {
     let $selection = $(this).val();
-    $('div').hide();
-    $(`div[class="${$selection}"]`).show();
+    $('section').hide();
+    $(`section[class="${$selection}"]`).show();
   });
 }
