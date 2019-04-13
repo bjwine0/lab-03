@@ -1,69 +1,73 @@
 'use strict';
-debugger;
-
 
 function Animal(animal) {
-  this.image_url = animal.image_url;
-  this.title = animal.title;
-  this.description = animal.description;
-  this.keyword = animal.keyword;
-  this.horns = animal.horns;
-  // keyword.push(this.keyword);
-  console.log('key', this.keyword);
-  if (!(Animal.noDuplicate.indexOf(animal.keyword) + 1)) {
-    Animal.noDuplicate.push(animal.keyword);
+  for (let key in animal) {
+    console.log('key', key);
+    this[key]= animal[key];
+    if (!(Animal.noDuplicate.indexOf(animal.keyword) + 1)) {
+      Animal.noDuplicate.push(animal.keyword);
+    }
   }
-
 }
 
 Animal.noDuplicate = [];
-console.log('nodup', Animal.noDuplicate);
 Animal.allAnimals = [];
-console.log('animal.allaniml', Animal.allAnimals);
+let zip = [];
+// let zipTwo = [];
 
-Animal.prototype.render = function () {
-  $('main').append('<div class="dupe"></div>');
-  let animalDupe = $('div[class="dupe"]');
-
-  let animalHtml = $('#photo-template').html();
-
-  animalDupe.html(animalHtml);
-
-  animalDupe.find('h2').text(this.title);
-  animalDupe.find('img').attr('src', this.image_url);
-  animalDupe.find('#description').text(this.description);
-  animalDupe.find('#keyword').text(this.keyword);
-  animalDupe.find('#horns').text(this.horns);
-  animalDupe.removeClass('dupe');
-  animalDupe.attr('class', this.keyword);
+Animal.prototype.toHtml = function () {
+  let $template = $('#animal-template').html();
+  console.log('source', $template);
+  let compiledTemplate = Handlebars.compile($template);
+  console.log(compiledTemplate(this));
+  return compiledTemplate(this);
 };
+
+// let path = 'data/page-1.json';
 
 Animal.readJson = () => {
-  $.get('data/page-1.json', 'json')
-    .then(data => {
-      data.forEach(item => {
-        Animal.allAnimals.push(new Animal(item));
-      });
-    })
-    .then(Animal.loadAnimals)
-    .then(Animal.loadKeyword);
+  // $('a').on('click', function () {
+  //   debugger;
+  //   let $whereToGo = $(this).val('path');
+    
+  //   debugger;
+  //   console.log('$wheretogo', $whereToGo);
+  //   debugger;
+    
+    
+  //   $('.tab-content').hide();
+  //   debugger;
+  //   // $('#' + $whereToGo).fadeIn(1000);
+  //   debugger;
+    // $.get( $whereToGo, 'json')
+    $.get('data/page-1.json')
+      // console.log($whereToGo)
+      .then(data => {
+        console.log(data);
+        data.forEach(object => {
+          zip.push(new Animal(object));
+          console.log('zip', zip);
+        });
+      })
+      .then(Animal.loadKeyword)
+      .then(Animal.loadTemplate);
+  // });
 };
-
-Animal.loadAnimals = () => {
-  console.log('load animals');
-  Animal.allAnimals.forEach(animal => animal.render());
-};
-
 $(() => Animal.readJson());
 
+
 Animal.loadKeyword = () => {
-  debugger;
   Animal.noDuplicate.forEach((keyword) => {
     $('select').append(`<option value="${keyword}">${keyword}</option>`);
   });
-
 };
 
+Animal.loadTemplate = () => {
+  zip.forEach(newAnimalObject => {
+    $('#photo-template').append(newAnimalObject.toHtml());
+    console.log('newAnimal', newAnimalObject);
+  });
+}
 
 $('select').on('change', function () {
   let $selection = $(this).val();
@@ -71,4 +75,13 @@ $('select').on('change', function () {
   $(`div[class="${$selection}"]`).show();
 });
 
-
+// $('a').on('click', function () {
+//   debugger;
+//   let $whereToGo = $(this).data('tab');
+//   debugger;
+//   console.log('$wheretogo', $whereToGo);
+//   debugger;
+//   $('.tab-content').hide();
+//   debugger;
+//   $('#' + $whereToGo).fadeIn(1000);
+// });
