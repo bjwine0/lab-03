@@ -58,13 +58,11 @@ Animal.loadKeyword = () => {
   })
 };
 
-// Animal.filterKeyword = () => {
-//   debugger;
-  $('#filter').on('change', function () {
-    let $selection = $(this).val();
-    $('div').hide();
-    $(`div[class="${$selection}"]`).show();
-  });
+$('#filter').on('change', function () {
+  let $selection = $(this).val();
+  $('div').hide();
+  $(`div[class="${$selection}"]`).show();
+});
 
 $('#click').on('change', function() {
   debugger;
