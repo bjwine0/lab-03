@@ -1,6 +1,7 @@
-html {
+header, footer{
   margin: 0 auto;
   text-align: center;
+  margin: 30px 0px;
 }
 
 #photo-template {
@@ -8,10 +9,8 @@ html {
   background-color: lightgray;
   margin: 0 auto;
   text-align: center;
-  padding: 20px 20px;
   width: 400px;
   height: 530px;
-  margin-bottom: 30px;
 }
 
 body {
@@ -24,7 +23,6 @@ img {
   object-fit: contain;
   border: solid 1px grey;
   background-color: white;
-  
 }
 
 #description {
@@ -48,7 +46,6 @@ select {
   margin: 0 auto;
   font-size: 15px;
   padding: 20px 0px;
-  margin-bottom: 30px;
 }
 
 h1 {
@@ -58,20 +55,14 @@ h1 {
 }
 
 @media only screen and (min-width: 768px) {
-  #photo-template {
-    float: left;
+  div {
+    margin: auto;
   }
-
-#photo-template:nth-child(3n +2) {
-  margin: 0 30px;
-}
 
   main {
-    width: 1260px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex-flow: column wrap;
   }
 
-  footer {
-    clear: both;
-  }
 }
