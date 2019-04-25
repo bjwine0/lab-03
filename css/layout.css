@@ -4,22 +4,30 @@ header, footer{
   margin: 30px 0px;
 }
 
+section {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
 #photo-template {
   border: solid 2px black;
   background-color: lightgray;
-  margin: 0 auto;
   text-align: center;
   width: 400px;
   height: 530px;
+  margin-bottom: 30px;
 }
 
 body {
   background-color: pink;
+  width: 100%;
 }
 
 img {
-  width: 300px;
-  height: 300px;
+  width: 320px;
+  height: 320px;
   object-fit: contain;
   border: solid 1px grey;
   background-color: white;
@@ -42,27 +50,11 @@ h2 {
 }
 
 select {
-  text-align: center;
-  margin: 0 auto;
   font-size: 15px;
   padding: 20px 0px;
 }
 
 h1 {
-  margin: 0 auto;
   font-size: 50px;
   padding: 20px 0px;
-}
-
-@media only screen and (min-width: 768px) {
-  div {
-    margin: auto;
-  }
-
-  main {
-    display: flex;
-    flex-direction: column;
-    flex-flow: column wrap;
-  }
-
 }
